@@ -20,21 +20,82 @@
     button:hover {
       background-color: #005a9e;
     }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 0;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 800px;
+      height: 90vh;
+      position: relative;
+    }
+
+    .modal-header {
+      padding: 10px;
+      background-color: #0078D4;
+      color: white;
+      text-align: right;
+    }
+
+    .modal iframe {
+      width: 100%;
+      height: calc(100% - 40px);
+      border: none;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    .close {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
 
   <h1>Mark Your Attendance</h1>
-  <p>Click the button below to mark your attendance.</p>
-  <button onclick="redirectToForm()">Mark Attendance</button>
+  <p>Click below to mark your attendance without leaving the page.</p>
+  <button onclick="openModal()">Mark Attendance</button>
+
+  <!-- Modal Structure -->
+  <div class="modal" id="formModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" onclick="closeModal()">&times;</span>
+      </div>
+      <!-- Form opens in a separate window due to iframe restrictions -->
+      <iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=VtxCYEUQZUaDpNQAzlY1cjFyVS9dCNhLizNXnPan_Z9UMFZGSEpIVTBEQUFLSEFYU1JNVVhQMlVINy4u" 
+              title="Attendance Form">
+      </iframe>
+    </div>
+  </div>
 
   <script>
-    function redirectToForm() {
-      // Replace this URL with your Microsoft Form URL
-      window.location.href = "https://forms.office.com/Pages/DesignPageV2.aspx?origin=RevampFRE&subpage=design&id=VtxCYEUQZUaDpNQAzlY1cjFyVS9dCNhLizNXnPan_Z9UMFZGSEpIVTBEQUFLSEFYU1JNVVhQMlVINy4u&topview=Preview";
+    function openModal() {
+      document.getElementById("formModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("formModal").style.display = "none";
     }
   </script>
 
 </body>
 </html>
-
